@@ -1,0 +1,182 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --terminal-green: #00FF41;
+    --terminal-dim: #008F11;
+    --terminal-mid: #00aa2a;
+    --terminal-amber: #FFB000;
+    --terminal-cyan: #00FFFF;
+    --terminal-red: #FF0000;
+    --terminal-bg: #0a0a0a;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'JetBrains Mono', monospace;
+    background-color: var(--terminal-bg);
+    color: var(--terminal-green);
+    min-height: 100vh;
+    overflow-x: hidden;
+    line-height: 1.6;
+    font-size: 14px;
+  }
+
+  /* Green text selection */
+  ::selection {
+    background-color: rgba(0, 255, 65, 0.3);
+    color: #00FF41;
+  }
+
+  /* Green scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0a0a0a;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #008F11;
+    border-radius: 0;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #00FF41;
+  }
+}
+
+@layer components {
+  /* Terminal window wrapper */
+  .terminal-window {
+    background: rgba(10, 10, 10, 0.9);
+    border: 1px solid rgba(0, 255, 65, 0.3);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .terminal-window::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 255, 65, 0.03) 0px,
+      rgba(0, 255, 65, 0.03) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Title bar for terminal windows */
+  .terminal-title-bar {
+    border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+    padding: 6px 12px;
+    font-size: 12px;
+    color: #008F11;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .terminal-title-bar .prompt {
+    color: #00aa2a;
+  }
+
+  .terminal-title-bar .command {
+    color: #00FF41;
+  }
+
+  /* Text glow effect */
+  .text-glow {
+    text-shadow: 0 0 4px rgba(0, 255, 65, 0.6);
+  }
+
+  .text-glow-strong {
+    text-shadow:
+      0 0 4px rgba(0, 255, 65, 0.8),
+      0 0 10px rgba(0, 255, 65, 0.5),
+      0 0 20px rgba(0, 255, 65, 0.3);
+  }
+
+  .text-glow-amber {
+    text-shadow: 0 0 4px rgba(255, 176, 0, 0.6);
+  }
+
+  .text-glow-cyan {
+    text-shadow: 0 0 4px rgba(0, 255, 255, 0.6);
+  }
+}
+
+/* CRT screen flicker - subtle global effect */
+#root {
+  animation: crt-flicker 0.1s infinite;
+}
+
+@keyframes crt-flicker {
+  0% { opacity: 0.985; }
+  50% { opacity: 1; }
+  100% { opacity: 0.99; }
+}
+
+/* Moving scanline bar */
+.scanline-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: rgba(0, 255, 65, 0.08);
+  z-index: 1000;
+  pointer-events: none;
+  animation: scanline-move 8s linear infinite;
+}
+
+@keyframes scanline-move {
+  0% { transform: translateY(-4px); }
+  100% { transform: translateY(100vh); }
+}
+
+/* Screen vignette (darker at edges) */
+.screen-vignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 50%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  #root {
+    animation: none !important;
+  }
+
+  .scanline-bar {
+    display: none;
+  }
+
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
