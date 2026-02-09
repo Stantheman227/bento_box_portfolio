@@ -24,7 +24,7 @@ export default function BentoCell({
       aria-label={ariaLabel}
       style={{ gridArea: area }}
       className={cn(
-        'relative min-w-0 overflow-hidden rounded-2xl p-5 lg:p-6',
+        'relative min-w-0 overflow-hidden rounded-2xl p-5 lg:p-4 xl:p-6',
         interactive && 'cursor-pointer',
         className
       )}

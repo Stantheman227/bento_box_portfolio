@@ -5,7 +5,7 @@ export default function AboutCell() {
 
   return (
     <div className="flex h-full min-h-[120px] flex-col justify-end">
-      <h2 className="font-display text-2xl uppercase leading-[0.9] text-white md:text-4xl lg:text-5xl">
+      <h2 className="font-display text-2xl uppercase leading-[0.9] text-white md:text-4xl lg:text-3xl xl:text-5xl">
         {line1}
         <br />
         &amp; {line2}

@@ -21,7 +21,7 @@ export default function SocialCell() {
             }
             className="group/social flex min-h-[44px] items-center justify-between py-2 sm:min-h-0 sm:py-0"
           >
-            <span className="font-display text-lg leading-[1] text-white transition-colors duration-200 group-hover/social:text-white/80 group-active/social:text-white/80 lg:text-xl">
+            <span className="font-display text-lg leading-[1] text-white transition-colors duration-200 group-hover/social:text-white/80 group-active/social:text-white/80 lg:text-base xl:text-xl">
               {social.label}
             </span>
             <span
