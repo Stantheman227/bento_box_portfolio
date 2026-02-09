@@ -1,4 +1,4 @@
-import type { Variants } from 'framer-motion'
+import type { Variants, Transition } from 'framer-motion'
 
 const expoOut = [0.16, 1, 0.3, 1] as const
 
@@ -7,39 +7,34 @@ export const fadeUp: Variants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: expoOut },
+    transition: { duration: 0.9, ease: expoOut },
   },
 }
 
-export const blurIn: Variants = {
-  hidden: { opacity: 0, y: 20, filter: 'blur(10px)' },
-  visible: {
-    opacity: 1,
-    y: 0,
-    filter: 'blur(0px)',
-    transition: { duration: 0.8, ease: expoOut },
-  },
-}
+// ─── Bento-specific animations ───
 
-export const scaleIn: Variants = {
-  hidden: { opacity: 0, scale: 0.95 },
+export const cellEntrance: Variants = {
+  hidden: { opacity: 0, scale: 0.96, y: 8 },
   visible: {
     opacity: 1,
     scale: 1,
-    transition: { duration: 0.5, ease: expoOut },
+    y: 0,
+    transition: { duration: 0.6, ease: expoOut },
   },
 }
 
-export const staggerContainer: Variants = {
+export const gridStagger: Variants = {
   hidden: {},
   visible: {
-    transition: { staggerChildren: 0.1 },
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.2,
+    },
   },
 }
 
-export const staggerFast: Variants = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.06 },
-  },
+export const cellHoverSpring: Transition = {
+  type: 'spring',
+  stiffness: 400,
+  damping: 25,
 }

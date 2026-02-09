@@ -2,135 +2,63 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Animated gradient border support */
-@property --gradient-angle {
-  syntax: '<angle>';
-  initial-value: 0deg;
-  inherits: false;
-}
-
 @layer base {
-  :root {
-    --color-background: #FAFAFA;
-    --color-surface: #F2F2F7;
-    --color-surface-elevated: #FFFFFF;
-    --color-text-primary: #1D1D1F;
-    --color-text-secondary: #6E6E73;
-    --color-accent: #0071E3;
-    --color-accent-hover: #0077ED;
-    --color-border: #D2D2D7;
-
-    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-
-    color-scheme: light;
-  }
-
-  .dark {
-    --color-background: #000000;
-    --color-surface: #111112;
-    --color-surface-elevated: #1C1C1E;
-    --color-text-primary: #F5F5F7;
-    --color-text-secondary: #86868B;
-    --color-accent: #0A84FF;
-    --color-accent-hover: #409CFF;
-    --color-border: #2C2C2E;
-
-    color-scheme: dark;
-  }
-
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
 
-  html {
-    scroll-behavior: smooth;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
   body {
-    font-family: 'DM Sans', system-ui, sans-serif;
-    background-color: var(--color-background);
-    color: var(--color-text-primary);
-    min-height: 100vh;
-    overflow-x: hidden;
-    line-height: 1.6;
-    transition: background-color 0.4s ease, color 0.3s ease;
-  }
-
-  /* Selection */
-  ::selection {
-    background-color: var(--color-accent);
-    color: white;
-  }
-
-  /* Scrollbar */
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: var(--color-border);
-    border-radius: 4px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: var(--color-text-secondary);
+    font-family: 'Inter', system-ui, sans-serif;
+    height: 100vh;
+    overflow: hidden;
+    background: #FFFFFF;
   }
 }
 
 @layer components {
-  /* Subtle grain texture overlay */
-  .grain::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    pointer-events: none;
-    opacity: 0.020;
-    mix-blend-mode: multiply;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-repeat: repeat;
-    background-size: 256px 256px;
+  /* ─── Bento Grid ─── */
+  .bento-grid {
+    display: grid;
+    gap: 16px;
+    width: 100%;
+    height: 100%;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "name"
+      "stats"
+      "projects"
+      "skills"
+      "about"
+      "social"
+      "status";
   }
 
-  .dark .grain::after {
-    mix-blend-mode: screen;
-    opacity: 0.030;
+  @media (min-width: 768px) {
+    .bento-grid {
+      gap: 16px;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto auto auto auto;
+      grid-template-areas:
+        "name     name"
+        "stats    skills"
+        "about    about"
+        "projects projects"
+        "chat     social"
+        "status   status";
+    }
   }
 
-  /* Animated gradient border */
-  .animated-border {
-    --gradient-angle: 0deg;
-    border: 1px solid transparent;
-    background:
-      linear-gradient(var(--color-surface), var(--color-surface)) padding-box,
-      conic-gradient(
-        from var(--gradient-angle),
-        var(--color-accent),
-        #9333EA,
-        #EC4899,
-        var(--color-accent)
-      ) border-box;
-    animation: gradient-rotate 4s linear infinite;
-  }
-
-  @keyframes gradient-rotate {
-    to { --gradient-angle: 360deg; }
-  }
-}
-
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+  @media (min-width: 1024px) {
+    .bento-grid {
+      gap: 20px;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
+      grid-template-areas:
+        "name     stats    skills   projects"
+        "name     about    about    projects"
+        "chat     social   status   projects";
+    }
   }
 }

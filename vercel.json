@@ -4,5 +4,13 @@
   "framework": "vite",
   "rewrites": [
     { "source": "/(.*)", "destination": "/" }
-  ]
+  ],
+  "functions": {
+    "api/chat.ts": {
+      "maxDuration": 30
+    },
+    "api/github.ts": {
+      "maxDuration": 10
+    }
+  }
 }
