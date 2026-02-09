@@ -60,8 +60,8 @@ export default function ChatCell() {
   }
 
   return (
-    <div className="flex h-full min-h-[250px] flex-col">
-      <span className="mb-2 font-mono text-[10px] uppercase tracking-[0.2em] text-white md:mb-2">
+    <div className="flex h-full min-h-[250px] flex-col lg:min-h-0">
+      <span className="mb-2 font-mono text-[10px] uppercase tracking-[0.2em] text-white md:mb-2 lg:mb-1">
         KI-Assistent
       </span>
 
@@ -70,7 +70,7 @@ export default function ChatCell() {
         ref={scrollRef}
         role="log"
         aria-live="polite"
-        className="min-h-0 flex-1 space-y-3 overflow-y-auto pr-1"
+        className="min-h-0 flex-1 space-y-3 overflow-y-auto pr-1 lg:space-y-2"
       >
         {messages.length === 0 ? (
           <motion.div
@@ -87,7 +87,7 @@ export default function ChatCell() {
                 <button
                   key={q}
                   onClick={() => handleSuggestion(q)}
-                  className="min-h-[44px] border border-white/20 px-3 py-1.5 font-mono text-[10px] text-white/60 transition-colors duration-300 hover:border-white/40 hover:text-white md:min-h-0 md:px-2 md:py-1 md:text-[9px]"
+                  className="min-h-[44px] border border-white/20 px-3 py-1.5 font-mono text-[10px] text-white/60 transition-colors duration-300 hover:border-white/40 hover:text-white md:min-h-0 md:px-2 md:py-1 md:text-[9px] lg:px-1.5 lg:py-0.5 lg:text-[8px] xl:px-2 xl:py-1 xl:text-[9px]"
                 >
                   {q}
                 </button>
@@ -122,7 +122,7 @@ export default function ChatCell() {
       </div>
 
       {/* Input */}
-      <form onSubmit={handleSubmit} className="mt-3 flex gap-2 md:mt-2">
+      <form onSubmit={handleSubmit} className="mt-3 flex gap-2 md:mt-2 lg:mt-1">
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
