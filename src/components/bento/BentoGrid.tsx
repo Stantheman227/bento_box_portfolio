@@ -14,7 +14,7 @@ export default function BentoGrid({ children }: BentoGridProps) {
       variants={gridStagger}
       initial={reduced ? 'visible' : 'hidden'}
       animate="visible"
-      className="bento-grid h-screen px-8 py-10 md:px-[8vw] md:py-[10vh] lg:px-[10vw] lg:py-[12vh]"
+      className="bento-grid min-h-0 px-4 py-6 md:px-[8vw] md:py-[5vh] lg:h-screen lg:px-[10vw] lg:py-[12vh]"
     >
       {children}
     </motion.div>

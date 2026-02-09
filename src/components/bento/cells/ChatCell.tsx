@@ -60,8 +60,8 @@ export default function ChatCell() {
   }
 
   return (
-    <div className="flex h-full flex-col">
-      <span className="mb-2 font-mono text-[10px] uppercase tracking-[0.2em] text-white">
+    <div className="flex h-full min-h-[250px] flex-col">
+      <span className="mb-2 font-mono text-[10px] uppercase tracking-[0.2em] text-white md:mb-2">
         KI-Assistent
       </span>
 
@@ -70,7 +70,7 @@ export default function ChatCell() {
         ref={scrollRef}
         role="log"
         aria-live="polite"
-        className="flex-1 space-y-3 overflow-y-auto pr-1"
+        className="min-h-0 flex-1 space-y-3 overflow-y-auto pr-1"
       >
         {messages.length === 0 ? (
           <motion.div
@@ -82,12 +82,12 @@ export default function ChatCell() {
             <p className="text-xs text-white/60">
               Frag mich etwas über Piotr!
             </p>
-            <div className="flex flex-wrap gap-1.5">
+            <div className="flex flex-wrap gap-2 md:gap-1.5">
               {suggestedQuestions.map((q) => (
                 <button
                   key={q}
                   onClick={() => handleSuggestion(q)}
-                  className="border border-white/20 px-2 py-1 font-mono text-[9px] text-white/60 transition-colors duration-300 hover:border-white/40 hover:text-white"
+                  className="min-h-[44px] border border-white/20 px-3 py-1.5 font-mono text-[10px] text-white/60 transition-colors duration-300 hover:border-white/40 hover:text-white md:min-h-0 md:px-2 md:py-1 md:text-[9px]"
                 >
                   {q}
                 </button>
@@ -122,18 +122,18 @@ export default function ChatCell() {
       </div>
 
       {/* Input */}
-      <form onSubmit={handleSubmit} className="mt-2 flex gap-2">
+      <form onSubmit={handleSubmit} className="mt-3 flex gap-2 md:mt-2">
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Frag mich etwas..."
-          className="flex-1 border-b border-white/20 bg-transparent px-0 py-1.5 font-mono text-[11px] text-white placeholder:text-white/40 focus:border-white/50 focus:outline-none"
+          className="min-h-[44px] flex-1 border-b border-white/20 bg-transparent px-0 py-2 font-mono text-xs text-white placeholder:text-white/40 focus:border-white/50 focus:outline-none md:min-h-0 md:py-1.5 md:text-[11px]"
           disabled={isLoading}
         />
         <button
           type="submit"
           disabled={isLoading || !input.trim()}
-          className="font-mono text-[10px] uppercase tracking-wider text-white/60 transition-colors duration-300 hover:text-white disabled:opacity-30"
+          className="min-h-[44px] min-w-[44px] font-mono text-xs uppercase tracking-wider text-white/60 transition-colors duration-300 hover:text-white disabled:opacity-30 md:min-h-0 md:min-w-0 md:text-[10px]"
           aria-label="Nachricht senden"
         >
           &rarr;
