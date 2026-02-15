@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://piotrgosiewski.vercel.app/sitemap.xml

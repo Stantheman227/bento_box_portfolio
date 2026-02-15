@@ -27,49 +27,51 @@ export default function App() {
     <ThemeProvider>
       <LazyMotion features={domAnimation}>
         <Nav />
-        <BentoGrid>
-          {/* Photo + name overlay */}
-          <BentoCell area="name" className="group/photo min-h-[280px] p-0 md:min-h-[200px] lg:min-h-0">
-            <NameCell />
-          </BentoCell>
+        <main>
+          <BentoGrid>
+            {/* Photo + name overlay */}
+            <BentoCell as="section" area="name" ariaLabel="Profil und Name" className="group/photo min-h-[280px] p-0 md:min-h-[200px] lg:min-h-0">
+              <NameCell />
+            </BentoCell>
 
-          {/* Experience */}
-          <BentoCell area="stats" className="flex flex-col justify-between bg-bento-orange">
-            <StatsCell />
-          </BentoCell>
+            {/* Experience */}
+            <BentoCell as="section" area="stats" ariaLabel="Berufserfahrung" className="flex flex-col justify-between bg-bento-orange">
+              <StatsCell />
+            </BentoCell>
 
-          {/* Skills */}
-          <BentoCell area="skills" className="flex flex-col justify-end bg-bento-purple">
-            <SkillsCell />
-          </BentoCell>
+            {/* Skills */}
+            <BentoCell as="section" area="skills" ariaLabel="Fähigkeiten" className="flex flex-col justify-end bg-bento-purple">
+              <SkillsCell />
+            </BentoCell>
 
-          {/* Chat */}
-          <BentoCell area="chat" className="bg-bento-blue">
-            <Suspense fallback={<ChatFallback />}>
-              <ChatCell />
-            </Suspense>
-          </BentoCell>
+            {/* Chat */}
+            <BentoCell as="section" area="chat" ariaLabel="KI-Assistent" className="bg-bento-blue">
+              <Suspense fallback={<ChatFallback />}>
+                <ChatCell />
+              </Suspense>
+            </BentoCell>
 
-          {/* About — wide cell */}
-          <BentoCell area="about" className="flex flex-col justify-end bg-neutral-black">
-            <AboutCell />
-          </BentoCell>
+            {/* About — wide cell */}
+            <BentoCell as="section" area="about" ariaLabel="Über mich" className="flex flex-col justify-end bg-neutral-black">
+              <AboutCell />
+            </BentoCell>
 
-          {/* Projects — tall cell */}
-          <BentoCell area="projects" className="flex flex-col bg-bento-sky">
-            <ProjectsCell />
-          </BentoCell>
+            {/* Projects — tall cell */}
+            <BentoCell as="section" area="projects" ariaLabel="Projekte" className="flex flex-col bg-bento-sky">
+              <ProjectsCell />
+            </BentoCell>
 
-          {/* Social */}
-          <BentoCell area="social" className="flex flex-col justify-between bg-bento-pink">
-            <SocialCell />
-          </BentoCell>
+            {/* Social */}
+            <BentoCell as="section" area="social" ariaLabel="Social Media" className="flex flex-col justify-between bg-bento-pink">
+              <SocialCell />
+            </BentoCell>
 
-          {/* Contact */}
-          <BentoCell area="status" className="flex flex-col justify-between bg-neutral-light">
-            <StatusCell />
-          </BentoCell>
-        </BentoGrid>
+            {/* Contact */}
+            <BentoCell as="section" area="status" ariaLabel="Kontaktformular" className="flex flex-col justify-between bg-neutral-light">
+              <StatusCell />
+            </BentoCell>
+          </BentoGrid>
+        </main>
       </LazyMotion>
     </ThemeProvider>
   )

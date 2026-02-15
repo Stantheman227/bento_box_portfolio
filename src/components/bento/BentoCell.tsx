@@ -8,6 +8,7 @@ interface BentoCellProps {
   ariaLabel?: string
   className?: string
   children?: React.ReactNode
+  as?: 'div' | 'section' | 'article'
 }
 
 export default function BentoCell({
@@ -16,9 +17,12 @@ export default function BentoCell({
   ariaLabel,
   className,
   children,
+  as: Component = 'div',
 }: BentoCellProps) {
+  const MotionComponent = motion[Component] as typeof motion.div
+
   return (
-    <motion.div
+    <MotionComponent
       variants={cellEntrance}
       whileHover={interactive ? { scale: 1.01, transition: cellHoverSpring } : undefined}
       aria-label={ariaLabel}
@@ -30,6 +34,6 @@ export default function BentoCell({
       )}
     >
       {children}
-    </motion.div>
+    </MotionComponent>
   )
 }
